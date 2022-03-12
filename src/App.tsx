@@ -1,25 +1,43 @@
+import {useEffect} from 'react'
 import styled from "styled-components";
+import {motion, useMotionValue, useTransform, useViewportScroll } from "framer-motion";
 
-const Wrapper = styled.div`
-  height: 100vh;
+const Wrapper = styled(motion.div)`
+  height: 200vh;
   width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
+  background:linear-gradient(135deg,rgb(238, 0, 153),rgb(221,0,238));
 `;
 
-const Box = styled.div`
+
+const Box = styled(motion.div)`
   width: 200px;
   height: 200px;
-  background-color: white;
-  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 40px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.06);
 `;
 
+const boxVariants = {
+  hover:{ scale: 1.5, rotateZ: 90},
+  click:{scale:1, borderRadius:"100px"},
+}
+
 function App() {
+  const x = useMotionValue(0)
+  const rotateZ = useTransform(x, [-450, 450], [-360, +360]);
+  const gradient = useTransform(x, [-450, 0, 450], [
+    "linear-gradient(135deg,rgb(0, 210, 238),rgb(0, 83,238))",
+    "linear-gradient(135deg,rgb(238, 0, 153),rgb(221,0,238))",
+    "linear-gradient(135deg,rgb(0, 238, 155),rgb(238, 178, 0))",
+  ])
+  const {scrollYProgress} = useViewportScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 4])
   return (
-    <Wrapper>
-      <Box />
+    <Wrapper style={{background:gradient}}>
+      <Box style={{x, rotateZ, scale}} drag="x" dragSnapToOrigin/>
     </Wrapper>
   );
 }
