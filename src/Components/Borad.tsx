@@ -76,7 +76,7 @@ function Board({ toDos, boardId }: IBoardProps) {
     <Wrapper>
       <Title>{boardId}</Title>
       <Form onSubmit={handleSubmit(onValid)}>
-        <input {...register("toDo", {required:true})} type="text" placeholder={`Add task on ${boardId}`} />
+        <input autoComplete="off" {...register("toDo", {required:true})} type="text" placeholder={`Add task on ${boardId}`} />
       </Form>
       <Droppable droppableId={boardId}>
         {(magic, info) => (
