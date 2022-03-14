@@ -1,7 +1,9 @@
 import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import styled from "styled-components";
+import styled from "styled-components"
 import Home from "./routes/Home";
+import Netflix from "./routes/Netflix/NetflixApp";
 import ToDoList from "./routes/ToDoList";
+import Animation from "./routes/Animation"
 
 interface IRouterProps {
 
@@ -9,13 +11,14 @@ interface IRouterProps {
 
 const Tabs = styled.div`
     width: 100%;
-    height: 10%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px;
+    padding: 10px 5px;
     background-color: black;
+    position: fixed;
+    z-index: 1;
 `;
 
 
@@ -28,6 +31,7 @@ const Tab = styled.div`
     border-radius: 10px;
     text-align: center;
 `;
+
 
 function Router({}:IRouterProps) {
     return (        
@@ -42,10 +46,17 @@ function Router({}:IRouterProps) {
                 <Tab>
                     <Link to={`/practice/todolist`}>To Do List</Link>
                 </Tab>
+                <Tab>
+                    <Link to={`/practice/animation`}>Animation</Link>
+                </Tab>
             </Tabs>
+            
             <Switch>
-                <Route path="/practice/netfilx">
-
+                <Route path="/practice/animation">
+                    <Animation />
+                </Route>
+                <Route path="/practice/netflix">
+                    <Netflix />
                 </Route>
                 <Route path="/practice/todolist">
                     <ToDoList />

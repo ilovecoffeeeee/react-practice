@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   width: 100vw;
   margin: 0 auto;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   height: 100vh;
 `;
 
@@ -21,6 +21,7 @@ const Boards = styled.div`
   align-items: flex-start;
   width: 100%;
   gap: 10px;
+  margin-top: 50px;
 `;
 
 interface RouteRarams {
