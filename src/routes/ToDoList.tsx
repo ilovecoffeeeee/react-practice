@@ -71,13 +71,15 @@ function ToDoList() {
     // });
   };
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Wrapper>
-        <Boards>
-          {Object.keys(toDos).map(boardId => <Board boardId={boardId} key={boardId} toDos={toDos[boardId]}/>)}
-        </Boards>
-      </Wrapper>
-    </DragDropContext>
+    <>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Wrapper>
+          <Boards>
+            {Object.keys(toDos).map(boardId => <Board boardId={boardId} key={boardId} toDos={toDos[boardId]}/>)}
+          </Boards>
+        </Wrapper>
+      </DragDropContext>
+    </>
   );
 }
 
