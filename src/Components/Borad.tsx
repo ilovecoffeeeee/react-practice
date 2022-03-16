@@ -42,8 +42,14 @@ const Area = styled.div<IAreaProps>`
 
 const Form = styled.form`
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   input {
-    width: 100%;
+    height: 30px;
+    width: 87%;
+    border-radius: 5px;
+    border-color: transparent;
   }
 `;
 
@@ -63,6 +69,7 @@ function Board({ toDos, boardId }: IBoardProps) {
     const newToDo = {
       id:Date.now(),
       text: toDo,
+      board: boardId,
     }
     setToDos(allBoards => {
       return {
@@ -86,8 +93,8 @@ function Board({ toDos, boardId }: IBoardProps) {
             ref={magic.innerRef}
             {...magic.droppableProps}
           >
-            {toDos.map((toDo, index) => (
-              <DragabbleCard key={toDo.id} index={index} toDoId={toDo.id} toDoText={toDo.text}/>
+            {toDos.map((toDo, index, board) => (
+              <DragabbleCard key={toDo.id} index={index} toDoId={toDo.id} toDoText={toDo.text} toDoBoard={toDo.board}/>
             ))}
             {magic.placeholder}
           </Area>

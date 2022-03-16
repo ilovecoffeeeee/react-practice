@@ -3,6 +3,7 @@ import { atom, selector } from "recoil";
 export interface ITodo {
     id: number;
     text: string;
+    board: string;
 }
 
 interface IToDoState {

@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   width: 100vw;
   margin: 0 auto;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   height: 100vh;
 `;
 
@@ -32,7 +32,6 @@ function ToDoList() {
   const { result } = useParams<RouteRarams>();
   const [toDos, setToDos] = useRecoilState(toDoState)
   const onDragEnd = (info:DropResult) => {
-    console.log(info)
     const {destination, draggableId, source} = info;
     if(!destination) return;
     if(destination?.droppableId === source.droppableId) {
@@ -53,9 +52,13 @@ function ToDoList() {
       setToDos((allBoards) => {
         const sourceBoard = [...allBoards[source.droppableId]];
         const taskObj = sourceBoard[source.index]
+        const newId = taskObj.id
+        const newText = taskObj.text
+        const newBoard = taskObj.board.replaceAll(source.droppableId, destination.droppableId)
+        const resultObj = {id: newId, text: newText, board: newBoard}
         const destinationBoard = [...allBoards[destination.droppableId]];
         sourceBoard.splice(source.index, 1)
-        destinationBoard.splice(destination?.index, 0, taskObj);
+        destinationBoard.splice(destination?.index, 0, resultObj);
         return {
           ...allBoards,
           [source.droppableId]: sourceBoard,
@@ -71,6 +74,7 @@ function ToDoList() {
       // return toDosCopy
     // });
   };
+  console.log(toDos)
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
