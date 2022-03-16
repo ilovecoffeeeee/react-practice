@@ -33,11 +33,13 @@ function DragabbleCard({ toDoId, toDoText, index, toDoBoard }: IDragabbleCardPro
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setToDos((allBoards) => {
       const boardCopy = [...allBoards[toDoBoard]];
+      // const taskObj = boardCopy[index]
+      // console.log(taskObj.text, "is deleted on", taskObj.board)
       boardCopy.splice(index, 1)
       return {
         ...allBoards,
         [toDoBoard]: boardCopy,
-      };
+      }
     })
   }
   return (
