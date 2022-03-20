@@ -1,7 +1,8 @@
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { motion, useAnimation, useViewportScroll } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Nav = styled(motion.nav)`
   display: flex;
@@ -50,7 +51,7 @@ const Item = styled.li`
   }
 `;
 
-const Search = styled.span`
+const Search = styled.form`
   color: white;
   display: flex;
   align-items: center;
@@ -106,12 +107,15 @@ const navVariants = {
   },
 };
 
+interface IForm {
+  keyword: string;
+}
 
 
 function NetflixHeader() {
     const [searchOpen, setSearchOpen] = useState(false);
-    const homeMatch = useRouteMatch("/practice/netflix");
-    const tvMatch = useRouteMatch("/practice/netflix/tv");
+    const homeMatch = useRouteMatch("/react-practice/netflix");
+    const tvMatch = useRouteMatch("/react-practice/netflix/tv");
     const inputAnimation = useAnimation();
     const navAnimation = useAnimation();
     const { scrollY } = useViewportScroll();
@@ -134,6 +138,11 @@ function NetflixHeader() {
         }
       });
     }, [scrollY, navAnimation]);
+    const history = useHistory();
+    const { register, handleSubmit } = useForm<IForm>();
+    const onValid = (data: IForm) => {
+      history.push(`/react-practice/netflix/search?keyword=${data.keyword}`)
+    };
     return (
         <Nav variants={navVariants} animate={navAnimation} initial={"top"}>
       <Col>
@@ -150,15 +159,15 @@ function NetflixHeader() {
         </Logo>
         <Items>
           <Item>
-            <Link to="/practice/netflix">Home {homeMatch?.isExact && <Circle layoutId="circle" />}</Link>
+            <Link to="/react-practice/netflix">Home {homeMatch?.isExact && <Circle layoutId="circle" />}</Link>
           </Item>
           <Item>
-            <Link to="/practice/netflix/tv">Tv Shows {tvMatch && <Circle layoutId="circle" />}</Link>
+            <Link to="/react-practice/netflix/tv">Tv Shows {tvMatch && <Circle layoutId="circle" />}</Link>
           </Item>
         </Items>
       </Col>
       <Col>
-      <Search>
+      <Search onSubmit={handleSubmit(onValid)}>
           <motion.svg
             onClick={toggleSearch}
             animate={{ x: searchOpen ? -185 : 0 }}
@@ -174,6 +183,7 @@ function NetflixHeader() {
             ></path>
           </motion.svg>
           <Input
+            {...register("keyword", {required: true, minLength:2})}
             animate={inputAnimation}
             initial={{ scaleX: 0 }}
             transition={{ type: "linear" }}

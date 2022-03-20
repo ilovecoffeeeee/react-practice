@@ -12,5 +12,7 @@ interface IToDoState {
 
 export const toDoState = atom<IToDoState>({
     key: "toDo",
-    default : JSON.parse(localStorage.getItem("toDo") || `{"To Do":[],"Doing":[],"Done":[]}`)
+    default : {"To Do":[],"Doing":[],"Done":[]},
+    // default : JSON.parse(localStorage.getItem("toDo") || `{"To Do":[],"Doing":[],"Done":[]}`) 
+    // default : JSON.parse(sessionStorage.getItem("toDo") || `{"To Do":[],"Doing":[],"Done":[]}`)
 })

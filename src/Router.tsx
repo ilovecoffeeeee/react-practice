@@ -19,6 +19,7 @@ const Tabs = styled.div`
     background-color: black;
     position: fixed;
     z-index: 1;
+    color: black;
 `;
 
 
@@ -41,24 +42,24 @@ function Router({}:IRouterProps) {
                     <Link to={`/`}>Home</Link>
                 </Tab>
                 <Tab>
-                    <Link to={`/practice/netflix`}>Netflix Clone</Link>
+                    <Link to={`/react-practice/netflix`}>Netflix Clone</Link>
                 </Tab>
                 <Tab>
-                    <Link to={`/practice/todolist`}>To Do List</Link>
+                    <Link to={`/react-practice/todolist`}>To Do List</Link>
                 </Tab>
                 <Tab>
-                    <Link to={`/practice/animation`}>Animation</Link>
+                    <Link to={`/react-practice/animation`}>Animation</Link>
                 </Tab>
             </Tabs>
             
             <Switch>
-                <Route path="/practice/animation">
+                <Route path="/react-practice/animation">
                     <Animation />
                 </Route>
-                <Route path="/practice/netflix">
+                <Route path={["/react-practice/netflix", "/react-practice/netflix/movies/:movieId"]}>
                     <Netflix />
                 </Route>
-                <Route path="/practice/todolist">
+                <Route path="/react-practice/todolist">
                     <ToDoList />
                 </Route>
                 <Route path="/">

@@ -9,13 +9,13 @@ function Netflix_App() {
         <Router>
             <NetflixHeader />
             <Switch>
-                <Route path="/practice/netflix/tv">
+                <Route path="/react-practice/netflix/tv">
                     <NetflixTv />
                 </Route>
-                <Route path="/practice/netflix/search">
+                <Route path="/react-practice/netflix/search">
                     <NetflixSearch />
                 </Route>
-                <Route path="/practice/netflix">
+                <Route path="/react-practice/netflix">
                     <NetflixHome />
                 </Route>
             </Switch>

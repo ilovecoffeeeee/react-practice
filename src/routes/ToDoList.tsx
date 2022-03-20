@@ -41,11 +41,10 @@ function ToDoList() {
         const taskObj = boardCopy[source.index]
         boardCopy.splice(source.index, 1)
         boardCopy.splice(destination?.index, 0, taskObj);
-        const result = {
+        return {
           ...allBoards,
           [source.droppableId] : boardCopy
         };
-        return result
       });
     }
     if(destination.droppableId !== source.droppableId) {
@@ -60,12 +59,12 @@ function ToDoList() {
         const destinationBoard = [...allBoards[destination.droppableId]];
         sourceBoard.splice(source.index, 1)
         destinationBoard.splice(destination?.index, 0, resultObj);
-        const result = {
+
+        return {
           ...allBoards,
           [source.droppableId]: sourceBoard,
           [destination.droppableId] : destinationBoard,
         }
-        return result
       })
     }
     // setToDos((oldToDos) => {
@@ -76,7 +75,8 @@ function ToDoList() {
       // return toDosCopy
     // });
   };
-  localStorage.setItem("toDo", JSON.stringify(toDos));
+  // localStorage.setItem("toDo", JSON.stringify(toDos))
+  // sessionStorage.setItem("toDo", JSON.stringify(toDos));
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
