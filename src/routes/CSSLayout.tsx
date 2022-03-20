@@ -7,16 +7,23 @@ const Wrapper = styled.div`
     padding-bottom: 200px;
 `;
 
-const Box = styled.div`
-    width: 200px;
-    height: 200px;
-    background-color: white;
+const Title = styled.div`
+    margin-top: 10px;
+    padding-left: 20px;
+    font-size: 18px;
 `;
+
+const Summary = styled.div`
+    padding-left: 20px;
+    font-size: 12px;
+`;
+
 
 function CSSLayout() {
     return (
         <Wrapper>
-            <Box/>
+            <Title>시작!</Title>
+            <Summary>컴포넌트가 늘어나니 컴퓨터가 엄청 느려지고 비행기 소리가 그치지 않는다.</Summary>
         </Wrapper>
     )
 }
