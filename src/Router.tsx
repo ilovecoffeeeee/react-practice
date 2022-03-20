@@ -4,6 +4,8 @@ import Home from "./routes/Home";
 import Netflix from "./routes/Netflix/NetflixApp";
 import ToDoList from "./routes/ToDoList";
 import Animation from "./routes/Animation"
+import CSSLayout from "./routes/CSSLayout";
+import React from "react";
 
 interface IRouterProps {
 
@@ -31,6 +33,12 @@ const Tab = styled.div`
     background-color: whitesmoke;
     border-radius: 10px;
     text-align: center;
+    font-weight: 700;
+`;
+
+const ReactTab = styled(Tab)`
+    background-color: #61DAFB;
+    font-weight: 700;
 `;
 
 
@@ -41,18 +49,24 @@ function Router({}:IRouterProps) {
                 <Tab>
                     <Link to={`/`}>Home</Link>
                 </Tab>
-                <Tab>
+                <ReactTab>
                     <Link to={`/react-practice/netflix`}>Netflix Clone</Link>
-                </Tab>
-                <Tab>
+                </ReactTab>
+                <ReactTab>
                     <Link to={`/react-practice/todolist`}>To Do List</Link>
-                </Tab>
-                <Tab>
+                </ReactTab>
+                <ReactTab>
                     <Link to={`/react-practice/animation`}>Animation</Link>
+                </ReactTab>
+                <Tab>
+                    <Link to={`/react-practice/csslayout`}>CSS Layout</Link>
                 </Tab>
             </Tabs>
             
             <Switch>
+                <Route path="/react-practice/csslayout">
+                    <CSSLayout/>
+                </Route>
                 <Route path="/react-practice/animation">
                     <Animation />
                 </Route>

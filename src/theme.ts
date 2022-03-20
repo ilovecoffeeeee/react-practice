@@ -14,4 +14,5 @@ export const darkTheme: DefaultTheme = {
     lighter: "#fff",
     darker: "#e5e5e5",
   },
+  reactColor : "#61DAFB",
 };

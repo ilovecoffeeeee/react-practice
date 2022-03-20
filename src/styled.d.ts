@@ -15,5 +15,6 @@ declare module "styled-components" {
       lighter: string,
       darker: string,
     },
+    reactColor : string,
   }
 }
