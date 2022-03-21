@@ -23,7 +23,7 @@ function CSSLayout() {
     return (
         <Wrapper>
             <Title>시작!</Title>
-            <Summary>컴포넌트가 늘어나니 컴퓨터가 엄청 느려지고 비행기 소리가 그치지 않는다.</Summary>
+            <Summary>컴포넌트가 늘어나니 컴퓨터가 엄청 느려지고 비행기 소리가 그치지 않는다. FLEX FROGGY 연결하기</Summary>
         </Wrapper>
     )
 }
